@@ -41,6 +41,7 @@ def get_range(start, stop):
     while num < stop:
         nums.append(num)
         num += 1 
+    print (nums)
 
 def censor_vowels(word):
     
@@ -86,8 +87,42 @@ def truncate(string):
 
 
 def has_balanced_parens(string):
-    pass  # TODO: replace this line with your code
+    
+    parens = 0
 
+    for char in string:
+        if char == "(":
+            parens += 1
+        elif char == ")":
+            parens -= 1
+            
+    if parens != 0:
+        return False
+    else:
+        return True
 
 def compress(string):
-    pass  # TODO: replace this line with your code
+    compressed = []
+
+    curr_char = ""
+    char_count = 0
+
+    for char in string:
+        if char != curr_char:
+            compressed.append(curr_char)
+            
+            if char_count > 1:
+                compressed.append(str(char_count))
+                
+            curr_char = char
+            char_count = 0
+    
+        
+        char_count += 1
+        
+    
+    compressed.append(curr_char)
+    if char_count > 1:
+        compressed.append(str(char_count))
+    
+    return "".join(compressed)
